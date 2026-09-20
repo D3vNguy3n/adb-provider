@@ -1,19 +1,16 @@
 # ADB Provider
 
-Android ADB pairing and shell library published as a Maven repository.
+Android ADB pairing and shell library published on Maven Central.
 
 ## Gradle
 
-Add the repository to `settings.gradle`:
+Make sure the project uses Maven Central in `settings.gradle`:
 
 ```gradle
 dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven {
-            url = uri("https://raw.githubusercontent.com/D3vNguy3n/adb-provider/main")
-        }
     }
 }
 ```
