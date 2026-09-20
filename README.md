@@ -19,7 +19,7 @@ Add the dependency to the app module:
 
 ```gradle
 dependencies {
-    implementation "io.github.d3vnguy3n:adb-provider:1.0.2"
+    implementation "io.github.d3vnguy3n:adb-provider:1.0.3"
 }
 ```
 
