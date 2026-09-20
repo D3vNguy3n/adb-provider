@@ -22,7 +22,7 @@ Add the dependency to the app module:
 
 ```gradle
 dependencies {
-    implementation "com.dnturbo:adb-provider:1.0.0"
+    implementation "io.github.d3vnguy3n:adb-provider:1.0.0"
 }
 ```
 
