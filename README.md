@@ -19,7 +19,7 @@ Add the dependency to the app module:
 
 ```gradle
 dependencies {
-    implementation "io.github.d3vnguy3n:adb-provider:1.0.1"
+    implementation "io.github.d3vnguy3n:adb-provider:1.0.2"
 }
 ```
 
@@ -30,6 +30,15 @@ import com.dnturbo.adb.AdbShell;
 
 AdbShell.get().connect(this, callback);
 AdbShell.get().run("id", callback);
+```
+
+To customize the ADB/RSA device name, add this inside the app's
+`<application>` element:
+
+```xml
+<meta-data
+    android:name="com.dnturbo.adb.KEY_NAME"
+    android:value="Any device name" />
 ```
 
 Requires Android 11 (API 30) or newer.
