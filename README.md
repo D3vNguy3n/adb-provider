@@ -58,13 +58,74 @@ Add these inside `<application>`:
     android:exported="false" />
 ```
 
-## API
+## Initialize once
 
 ```java
+import android.app.Application;
 import com.dnturbo.adb.AdbShell;
 
-AdbShell.get().connect(this, callback);
-AdbShell.get().run("id", callback);
+public final class App extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        AdbShell.initialize(this, "My app");
+    }
+}
 ```
+
+Use the same value for `com.dnturbo.adb.KEY_NAME` in the manifest. The bundled
+`AdbProvider` also initializes the library automatically when the process starts.
+
+## Connect
+
+Call this from an `Activity`, for example from a Connect button. The library first
+tries the saved RSA key. If that is unavailable, it opens Wireless debugging and
+shows the notification used to enter Android's six-digit pairing code.
+
+```java
+AdbShell.get().connect(this, new AdbShell.ConnectionCallback() {
+    @Override
+    public void onStateChanged(AdbShell.ConnectionState state) {
+        // CHECKING_SETTINGS, TRYING_RSA, WAITING_FOR_PAIRING_CODE, PAIRING, ...
+    }
+
+    @Override
+    public void onConnected(AdbShell.ConnectionMode mode) {
+        if (mode == AdbShell.ConnectionMode.RSA) {
+            // Connected with the saved RSA key.
+        } else {
+            // Connected after six-digit pairing.
+        }
+    }
+
+    @Override
+    public void onError(AdbShell.ConnectionError error, Throwable cause) {
+        // Inspect error for the category and cause for the underlying exception.
+    }
+});
+```
+
+## Run a shell command
+
+`run()` can be called from any class after initialization. It establishes a fresh
+connection with the saved key, runs the command off the main thread, and returns
+the result on the main thread.
+
+```java
+AdbShell.get().run("pm list packages", new AdbShell.Callback<String>() {
+    @Override
+    public void onSuccess(String output) {
+        // Use the command output.
+    }
+
+    @Override
+    public void onError(Throwable error) {
+        // Handle the connection or command error.
+    }
+});
+```
+
+Pass only the device shell command, such as `id`, `getprop ro.product.model`, or
+`settings get global adb_enabled`. Do not prefix it with `adb shell`.
 
 Requires Android 11 (API 30) or newer.
