@@ -1,0 +1,78 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "io.github.d3vnguy3n",
+    "module": "adb-provider",
+    "version": "1.0.10",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "adb-provider-1.0.10.aar",
+          "url": "adb-provider-1.0.10.aar",
+          "size": 267929,
+          "sha512": "bcbdff71b7633d7bdbec7edfc3992fd05074179d9cf1d103fce323e855fda9b1c0696cb2bdd60b9ee845f4d3ddda2752cb6065fb2084645403afbf488e678296",
+          "sha256": "2b2e879c0d49e232810ef4c249b5a09584065e363b0fee3b111ae4461e254a44",
+          "sha1": "b9b21ce1f9ff2c47de04a93033555da596248775",
+          "md5": "1d01e5661dc1282c5420d9d5655035a6"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "adb-provider-1.0.10.aar",
+          "url": "adb-provider-1.0.10.aar",
+          "size": 267929,
+          "sha512": "bcbdff71b7633d7bdbec7edfc3992fd05074179d9cf1d103fce323e855fda9b1c0696cb2bdd60b9ee845f4d3ddda2752cb6065fb2084645403afbf488e678296",
+          "sha256": "2b2e879c0d49e232810ef4c249b5a09584065e363b0fee3b111ae4461e254a44",
+          "sha1": "b9b21ce1f9ff2c47de04a93033555da596248775",
+          "md5": "1d01e5661dc1282c5420d9d5655035a6"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseSourcePublication",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "adb-provider-1.0.10-sources.jar",
+          "url": "adb-provider-1.0.10-sources.jar",
+          "size": 34099,
+          "sha512": "8209646834c8e280ab8967c5482344f8499809303325df7daa08e24f216ec20c2cfe193e6f7f2db6bbe635ab2353cc0d2841a9bf367b608229f5035b2457d595",
+          "sha256": "166e959e329f4a997677efe6ddac7727dce4be23b4b3747306808cba637251e5",
+          "sha1": "4e56da16ec3ec99dfb79a65a86743a8d999790c5",
+          "md5": "74ab2985a5c8ca46719e6e4d73e3fcd1"
+        }
+      ]
+    }
+  ]
+}

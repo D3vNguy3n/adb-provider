@@ -19,13 +19,13 @@ Add the dependency to the app module:
 
 ```gradle
 dependencies {
-    implementation "io.github.d3vnguy3n:adb-provider:1.0.9"
+    implementation "io.github.d3vnguy3n:adb-provider:1.0.10"
 }
 ```
 
 ## Required AndroidManifest.xml entries
 
-Version 1.0.9 leaves all permissions, the provider, and the service under
+Version 1.0.10 leaves all permissions, the provider, and the service under
 host-app control. Add these before the app's `<application>` element:
 
 ```xml
@@ -81,6 +81,9 @@ Use the same value for `com.dnturbo.adb.KEY_NAME` in the manifest. The bundled
 Call this from an `Activity`, for example from a Connect button. The library first
 tries the saved RSA key. If that is unavailable, it opens Wireless debugging and
 shows the notification used to enter Android's six-digit pairing code.
+
+If Android can no longer show the notification permission prompt, the library
+shows a dialog whose action opens the host app's notification settings directly.
 
 ```java
 AdbShell.get().connect(this, new AdbShell.ConnectionCallback() {
