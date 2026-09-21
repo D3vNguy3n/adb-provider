@@ -129,3 +129,7 @@ Pass only the device shell command, such as `id`, `getprop ro.product.model`, or
 `settings get global adb_enabled`. Do not prefix it with `adb shell`.
 
 Requires Android 11 (API 30) or newer.
+
+## License
+
+Licensed under the [Apache License 2.0](LICENSE).
