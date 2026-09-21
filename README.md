@@ -19,13 +19,13 @@ Add the dependency to the app module:
 
 ```gradle
 dependencies {
-    implementation "io.github.d3vnguy3n:adb-provider:1.0.8"
+    implementation "io.github.d3vnguy3n:adb-provider:1.0.9"
 }
 ```
 
 ## Required AndroidManifest.xml entries
 
-Version 1.0.8 leaves all permissions, the provider, and the service under
+Version 1.0.9 leaves all permissions, the provider, and the service under
 host-app control. Add these before the app's `<application>` element:
 
 ```xml
@@ -128,7 +128,17 @@ AdbShell.get().run("pm list packages", new AdbShell.Callback<String>() {
 Pass only the device shell command, such as `id`, `getprop ro.product.model`, or
 `settings get global adb_enabled`. Do not prefix it with `adb shell`.
 
-Requires Android 11 (API 30) or newer.
+The host app may use `minSdk 21` (Android 5.0). Wireless ADB pairing is available
+only on Android 11 (API 30) or newer. Check support before showing the feature:
+
+```java
+if (AdbShell.isSupported()) {
+    // Wireless ADB is available.
+}
+```
+
+On Android 5–10, the provider initializes safely, `connect()` reports
+`UNSUPPORTED_ANDROID_VERSION`, and the rest of the host app continues to work.
 
 ## License
 
