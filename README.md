@@ -19,13 +19,13 @@ Add the dependency to the app module:
 
 ```gradle
 dependencies {
-    implementation "io.github.d3vnguy3n:adb-provider:1.0.10"
+    implementation "io.github.d3vnguy3n:adb-provider:1.0.11"
 }
 ```
 
 ## Required AndroidManifest.xml entries
 
-Version 1.0.10 leaves all permissions, the provider, and the service under
+Version 1.0.11 leaves all permissions, the provider, and the service under
 host-app control. Add these before the app's `<application>` element:
 
 ```xml
@@ -115,6 +115,9 @@ connection with the saved key, runs the command off the main thread, and returns
 the result on the main thread.
 
 ```java
+import com.dnturbo.adb.AdbCommandException;
+import com.dnturbo.adb.AdbShell;
+
 AdbShell.get().run("pm list packages", new AdbShell.Callback<String>() {
     @Override
     public void onSuccess(String output) {
@@ -123,10 +126,23 @@ AdbShell.get().run("pm list packages", new AdbShell.Callback<String>() {
 
     @Override
     public void onError(Throwable error) {
-        // Handle the connection or command error.
+        if (error instanceof AdbCommandException) {
+            AdbCommandException commandError = (AdbCommandException) error;
+            int exitCode = commandError.getExitCode();
+            String errorOutput = commandError.getOutput();
+            // The device ran the command, but it returned a non-zero exit code.
+        } else {
+            // Handle a connection, authentication, or socket error.
+        }
     }
 });
 ```
+
+`onSuccess()` is called only when the remote command exits with code `0`. A
+non-zero exit code, including `Permission denied`, a missing file, or an unknown
+command, is returned through `onError()` as an `AdbCommandException`. Its
+`getOutput()` value contains the combined stdout and stderr produced by the
+command.
 
 Pass only the device shell command, such as `id`, `getprop ro.product.model`, or
 `settings get global adb_enabled`. Do not prefix it with `adb shell`.
